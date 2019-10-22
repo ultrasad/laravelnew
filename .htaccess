@@ -1,0 +1,16 @@
+<IfModule mod_rewrite.c>
+    <IfModule mod_negotiation.c>
+        Options -MultiViews
+    </IfModule>
+
+    Options +FollowSymLinks
+    RewriteEngine On
+	
+	RewriteCond %{HTTP_HOST} !^$
+	RewriteCond %{HTTP_HOST} !^www\. [NC]
+	RewriteCond %{HTTPS}s ^on(s)|
+	RewriteRule ^ http%1://www.%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+    
+    RewriteRule ^(.*)$ public/$1 [L]
+	
+</IfModule>
